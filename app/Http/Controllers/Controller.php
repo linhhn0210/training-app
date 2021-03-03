@@ -10,4 +10,16 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $useSSO = env('USE_SSO', false);
+        $middleware = $useSSO == true ? 'auth.cognito' : 'auth';
+        $this->middleware($middleware);
+    }
 }

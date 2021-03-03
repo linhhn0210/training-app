@@ -22,8 +22,8 @@ Route::get('/books', 'BookController@index')->name('books.all');
 
 Route::post('/books', 'BookController@store')->name('books.store');
 
-Route::get('/books/{expense}', 'BookController@show')->name('books.show');
+Route::get('/books/{book}', 'BookController@show')->name('books.show');
 
-Route::put('/books/{expense}', 'BookController@update')->name('books.update');
+Route::put('/books/{book}', 'BookController@update')->name('books.update');
 
-Route::delete('/books/{expense}', 'BookController@destory')->name('books.destroy');
+Route::delete('/books/{book}', 'BookController@destory')->name('books.destroy');

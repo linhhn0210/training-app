@@ -8,9 +8,14 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
-        $this->middleware('auth.cognito');
+        $this->middleware('auth');
     }
 
     /**
@@ -20,7 +25,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('book.index');
+        $books = Book::all();
+        return response()->json($books);
     }
 
     /**
@@ -41,7 +47,14 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'code' => 'required',
+            'name' => 'required',
+            'amount' => 'required'
+        ]);
+        $book = Expense::create($request->all());
+        return response()->json(['message'=> 'book created',
+            'book' => $book]);
     }
 
     /**
@@ -52,7 +65,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return $book;
     }
 
     /**
@@ -75,7 +88,18 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $request->validate([
+            'code' => 'required',
+            'name' => 'required',
+            'amount' => 'required'
+        ]);
+        $book = $request->all();
+        $book->save();
+
+        return response()->json([
+            'message' => 'book updated!',
+            'book' => $book
+        ]);
     }
 
     /**
@@ -86,6 +110,9 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return response()->json([
+            'message' => 'book deleted'
+        ]);
     }
 }

@@ -1,15 +1,65 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes React and other helpers. It's a great starting point while
- * building robust, powerful web applications using React + Laravel.
- */
+import React from "react";
+import ReactDOM from 'react-dom';
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "bootstrap/dist/css/bootstrap.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-require('./bootstrap');
+import EditBook from "./components/edit-book.component";
+import BooksList from "./components/books-list.component";
+import CreateBook from "./components/create-book.component";
 
-/**
- * Next, we will create a fresh React component instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+function App() {
+    return (<Router>
+        <div className="App">
+        <header className="App-header">
+        <Navbar>
+        <Container>
 
-require('./components/Example');
+        <Navbar.Brand>
+        <Link to={"/books/create"} className="nav-link">
+        Book manager
+    </Link>
+    </Navbar.Brand>
+
+    <Nav className="justify-content-end">
+        <Nav>
+        <Link to={"/books/create"} className="nav-link">
+        Create Book
+    </Link>
+    <Link to={"/books"} className="nav-link">
+        Books List
+    </Link>
+    </Nav>
+    </Nav>
+
+    </Container>
+    </Navbar>
+    </header>
+
+    <Container>
+    <Row>
+    <Col md={12}>
+        <div className="wrapper">
+        <Switch>
+        <Route exact path='/' component={CreateBook} />
+    <Route path="/books/create" component={CreateBook} />
+    <Route path="/books/edit/:id" component={EditBook} />
+    <Route path="/books" component={BooksList} />
+    </Switch>
+    </div>
+    </Col>
+    </Row>
+    </Container>
+    </div>
+    </Router>);
+}
+
+export default App;
+
+if (document.getElementById('app')) {
+    ReactDOM.render(<App />, document.getElementById('content'));
+}
