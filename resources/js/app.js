@@ -20,18 +20,13 @@ function App() {
         <Container>
 
         <Navbar.Brand>
-        <Link to={"/books/create"} className="nav-link">
-        Book manager
-    </Link>
     </Navbar.Brand>
 
     <Nav className="justify-content-end">
         <Nav>
-        <Link to={"/books/create"} className="nav-link">
-        Create Book
-    </Link>
-    <Link to={"/books"} className="nav-link">
-        Books List
+        <Link to={"/books/create"} className="font-weight-bold btn btn-primary">
+        <span className="fa fa-plus-circle">
+        </span> 作成
     </Link>
     </Nav>
     </Nav>
@@ -60,6 +55,6 @@ function App() {
 
 export default App;
 
-if (document.getElementById('app')) {
+if (document.getElementById('content')) {
     ReactDOM.render(<App />, document.getElementById('content'));
 }
