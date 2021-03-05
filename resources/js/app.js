@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import EditBook from "./components/edit-book.component";
-import Index from "./components/index.component";
+import BookList from "./components/books-list.component";
 import CreateBook from "./components/create-book.component";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Switch>
         <Route path="/books/create" component={CreateBook} />
         <Route path="/books/edit/:id" component={EditBook} />
-        <Route path="/books" component={Index} />
+        <Route path="/books" component={BookList} />
         </Switch>
     </Router>);
 }

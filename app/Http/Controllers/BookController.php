@@ -25,7 +25,28 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        $books = Book::paginate($request->get('numberPerPage'),['*'], 'page', $request->get('page'));
+        $numberPerPage = $request->get('numberPerPage');
+        $page = $request->get('page');
+        $conditions = [
+            'code' => $request->get('code'),
+            'name' => $request->get('name'),
+            'publisher' => $request->get('publisher'),
+            'author' => $request->get('author'),
+        ];
+
+        $where = [];
+        foreach ($conditions as $field => $value) {
+            if (trim((string)$value) !== "") {
+                $where[] = [$field, 'like', '%'.$value.'%'];
+            }
+        }
+
+        if (!empty($where)) {
+            $books = Book::where($where)->paginate($numberPerPage,['*'], 'page', $page);
+        } else {
+            $books = Book::paginate($numberPerPage,['*'], 'page', $page);
+        }
+
         return response()->json($books);
     }
 
