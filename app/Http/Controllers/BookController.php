@@ -15,7 +15,7 @@ class BookController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -23,9 +23,9 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
+        $books = Book::paginate($request->get('numberPerPage'),['*'], 'page', $request->get('page'));
         return response()->json($books);
     }
 
@@ -36,7 +36,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('book.add_edit');
     }
 
     /**

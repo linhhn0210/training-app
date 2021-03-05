@@ -20,15 +20,18 @@ export default class BookTableRow extends Component {
     render() {
         return (
             <tr>
-            <td>{this.props.obj.name}</td>
-            <td>{this.props.obj.amount}</td>
-            <td>{this.props.obj.description}</td>
-            <td>
-            <Link className="edit-link" to={"/edit-book/" + this.props.obj.id}>
-            <Button size="sm" variant="info">Edit</Button>
-            </Link>
-            <Button onClick={this.deleteBook} size="sm" variant="danger">Delete</Button>
-            </td>
+                <td>{this.props.obj.code}</td>
+                <td>{this.props.obj.name}</td>
+                <td>{this.props.obj.author}</td>
+                <td>{this.props.obj.publisher}</td>
+                <td className="text-center">
+                    <a href={"/edit-book/" + this.props.obj.id} className="font-weight-bold btn btn-warning text-white ml-1 mr-1">
+                    <i className="fa fa-edit"></i>
+                    </a>
+                    <button className="font-weight-bold btn btn-danger ml-1 mr-1" onClick={this.deleteBook}>
+                    <i className="fa fa-trash"></i>
+                    </button>
+                </td>
             </tr>
         );
     }

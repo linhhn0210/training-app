@@ -18,9 +18,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/books', 'BookController@index')->name('books.all');
+Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('book.all');
 
-Route::post('/books', 'BookController@store')->name('books.store');
+Route::post('/books', [App\Http\Controllers\BookController::class, 'store'])->name('book.store');
 
 Route::get('/books/{book}', 'BookController@show')->name('books.show');
 
