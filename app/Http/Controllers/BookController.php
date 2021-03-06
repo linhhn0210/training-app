@@ -72,15 +72,15 @@ class BookController extends Controller
             'code' => ['required', 'unique:books,code', 'alpha_num'],
             'name' => ['required'],
             'amount' => ['required', 'numeric'],
-            'publish_year' => ['numeric']
+            'publish_year' => ['nullable','numeric']
         ],[
             'code.required' => 'コードを入力してください。',
             'code.unique' => 'コードが登録されました。',
-            'code.alpha_num' => 'コードが登録されました。',
+            'code.alpha_num' => 'コードに英数字を入力してください。',
             'name.required' => '名称を入力してください。',
             'amount.required' => '価格を入力してください。',
-            'amount.numeric' => '価格を入力してください。',
-            'publish_year.numeric' => '価格を入力してください。'
+            'amount.numeric' => '価格に数字を入力してください。',
+            'publish_year.numeric' => '出版年に数字を入力してください。'
         ]);
         $book = Book::create($request->all());
         return response()->json(['message'=> '登録しました。',

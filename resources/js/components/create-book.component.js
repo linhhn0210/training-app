@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import axios from 'axios'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Swal from 'sweetalert2';
+import BookTableRow from "./BookTableRow";
 
 
 export default class CreateBook extends Component {
@@ -96,21 +97,27 @@ export default class CreateBook extends Component {
                     this.props.history.push('/books');
                 });
             }).catch(error => {
-                this.validateForm(e);
-                console.log(error.response)
+                this.validateForm(error.response.data.errors);
             });
     }
 
-    validateForm(event) {
-        // console.log(1111);
-        // var form = document.querySelector('#form_add')
-        //
-        // if (!form.checkValidity()) {
-        //     event.preventDefault()
-        //     // event.stopPropagation()
-        // }
-        //
-        // form.classList.add('was-validated')
+    validateForm(errors) {
+        var messDiv = document.getElementsByClassName("feedback");
+        for (var i = 0; i < messDiv.length; i++) {
+            messDiv[i].style.display = "none";
+        }
+        var errorItem = document.getElementsByClassName("form-control");
+        for (var i = 0; i < errorItem.length; i++) {
+            errorItem[i].classList.remove("is-invalid");
+        }
+        for(var item in errors) {
+            document.getElementById(item).classList.add("is-invalid");
+            var strError = errors[item].join();
+            var feedbackEl = document.getElementById(item).nextSibling;
+            feedbackEl.classList.add('invalid-feedback');
+            feedbackEl.style.display = "block";
+            feedbackEl.textContent = strError;
+        }
     }
 
     render() {
@@ -124,43 +131,51 @@ export default class CreateBook extends Component {
             <div className="form-group row">
             <label htmlFor="code" className="col-md-1 col-form-label font-weight-bold">コード</label>
             <div className="col-md-5 pl-0 pr-0">
-            <input type="text" required pattern="[a-zA-Z0-9]+" className="form-control text-uppercase" maxlength="10" id="code" name="code" placeholder="コード" value={this.state.code} onChange={this.onChangeBookCode}/>
+            <input type="text" required pattern="[a-zA-Z0-9]+" className="form-control text-uppercase" maxLength="10" id="code" name="code" placeholder="コード" value={this.state.code} onChange={this.onChangeBookCode}/>
+            <div className="feedback"></div>
             </div>
             <label htmlFor="name" className="col-sm-1 col-form-label font-weight-bold">名称</label>
             <div className="col-md-5 pl-0 pr-0">
             <input type="text" required className="form-control" id="name" name="name" placeholder="名称" value={this.state.name} onChange={this.onChangeBookName}/>
+            <div className="feedback"></div>
             </div>
             </div>
             <div className="form-group row">
             <label htmlFor="author" className="col-sm-1 col-form-label font-weight-bold">筆者</label>
             <div className="col-md-5 pl-0 pr-0">
             <input type="text" className="form-control" id="author" name="author" placeholder="筆者" value={this.state.author} onChange={this.onChangeBookAuthor}/>
+            <div className="feedback"></div>
             </div>
             <label htmlFor="amount" className="col-md-1 col-form-label font-weight-bold">価格</label>
             <div className="col-md-5 pl-0 pr-0">
-            <input type="text" required pattern="[0-9]+" className="form-control" maxlength="11" id="amount" name="amount" placeholder="価格" value={this.state.amount} onChange={this.onChangeBookAmount}/>
+            <input type="text" required pattern="[0-9]+" className="form-control" maxLength="11" id="amount" name="amount" placeholder="価格" value={this.state.amount} onChange={this.onChangeBookAmount}/>
+            <div className="feedback"></div>
             </div>
             </div>
             <div className="form-group row">
             <label htmlFor="publisher" className="col-md-1 col-form-label font-weight-bold">出版社</label>
             <div className="col-md-5 pl-0 pr-0">
             <input type="text" className="form-control" id="publisher" name="publisher" placeholder="出版社" value={this.state.publisher} onChange={this.onChangeBookPublisher}/>
+            <div className="feedback"></div>
             </div>
             <label htmlFor="publish_year" className="col-sm-1 col-form-label font-weight-bold">出版年</label>
             <div className="col-md-5 pl-0 pr-0">
-            <input type="text" pattern="[0-9]*" className="form-control" maxlength="4" id="publish_year" name="publish_year" placeholder="出版年" value={this.state.publish_year} onChange={this.onChangeBookPublishYear}/>
+            <input type="text" pattern="[0-9]*" className="form-control" maxLength="4" id="publish_year" name="publish_year" placeholder="出版年" value={this.state.publish_year} onChange={this.onChangeBookPublishYear}/>
+            <div className="feedback"></div>
             </div>
             </div>
             <div className="form-group row">
             <label htmlFor="description" className="col-md-1 col-form-label font-weight-bold">説明</label>
             <div className="col-md-11 pl-0 pr-0">
             <textarea rows={5} className="form-control" id="description" name="description" placeholder="説明" value={this.state.description} onChange={this.onChangeBookDescription}/>
+            <div className="feedback"></div>
         </div>
         </div>
         <div className="form-group row">
             <label htmlFor="image" className="col-md-1 col-form-label font-weight-bold">画像</label>
             <div className="custom-file col-md-11">
                 <input type="file" id="image" name="image" className="custom-file-input"  onChange={this.onChangeBookImage} />
+        <div className="feedback"></div>
             <label className="custom-file-label" htmlFor="image">Choose file...</label>
             </div>
             </div>
