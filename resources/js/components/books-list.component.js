@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import Table from 'react-bootstrap/Table';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import BookTableRow from './BookTableRow';
 
 
@@ -177,16 +177,16 @@ export default class BookList extends Component {
 
     render() {
         return (<div>
-            <a href={"/books/create"} className="font-weight-bold btn btn-success btn-lg mb-5">
+            <Link to={"/books/create"} className="font-weight-bold btn btn-success btn-lg mb-5">
             <i className="fa fa-plus-circle" />&nbsp;<span>作成</span>
-        </a>
+        </Link>
         <div className="row justify-content-center">
             <div className="col-md-12">
             <form id="form_search" enctype="multipart/form-data">
             <div className="form-group row">
             <label htmlFor="code" className="col-md-1 col-form-label font-weight-bold">コード</label>
             <div className="col-md-5">
-            <input type="text" className="form-control" id="code" placeholder="コード" />
+            <input type="text" className="form-control text-uppercase" maxlength="10" id="code" placeholder="コード" />
             </div>
             <label htmlFor="name" className="col-sm-1 col-form-label font-weight-bold">名称</label>
             <div className="col-md-5">

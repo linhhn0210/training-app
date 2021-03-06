@@ -28,7 +28,7 @@ if (!$useSSO) {
 Route::get('/books', function () {
     return view('book.index');
 });
-//Route::get('/books/create', [App\Http\Controllers\BookController::class, 'create'])->name('book.create');
+Route::get('/books/create', [App\Http\Controllers\BookController::class, 'create'])->name('book.create');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

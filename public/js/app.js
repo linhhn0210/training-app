@@ -2117,6 +2117,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _BookTableRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BookTableRow */ "./resources/js/components/BookTableRow.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -2430,8 +2431,8 @@ var BookList = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("a", {
-          href: "/books/create",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+          to: "/books/create",
           className: "font-weight-bold btn btn-success btn-lg mb-5",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
             className: "fa fa-plus-circle"
@@ -2455,7 +2456,8 @@ var BookList = /*#__PURE__*/function (_Component) {
                   className: "col-md-5",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                     type: "text",
-                    className: "form-control",
+                    className: "form-control text-uppercase",
+                    maxlength: "10",
                     id: "code",
                     placeholder: "\u30B3\u30FC\u30C9"
                   })
@@ -2544,10 +2546,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/esm/Form.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _books_list_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./books-list.component */ "./resources/js/components/books-list.component.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2569,9 +2571,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
 
 
 
@@ -2675,6 +2674,8 @@ var CreateBook = /*#__PURE__*/function (_Component) {
   }, {
     key: "onSubmit",
     value: function onSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault();
       var bookObject = {
         code: this.state.code,
@@ -2686,172 +2687,230 @@ var CreateBook = /*#__PURE__*/function (_Component) {
         description: this.state.description,
         image: this.state.image
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://localhost/api/books/', bookObject).then(function (res) {
-        return console.log(res.data);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://localhost/api/books', bookObject).then(function (res) {
+        _this2.setState({
+          code: '',
+          name: '',
+          author: '',
+          amount: '',
+          publisher: '',
+          publish_year: '',
+          description: '',
+          image: ''
+        });
+
+        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
+          title: '登録しました。',
+          icon: 'success'
+        }).then(function (result) {
+          _this2.props.history.push('/books');
+        });
+      })["catch"](function (error) {
+        _this2.validateForm(e);
+
+        console.log(error.response);
       });
-      sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire('Good job!', 'Book Added Successfully', 'success');
-      this.setState({
-        code: '',
-        name: '',
-        author: '',
-        amount: '',
-        publisher: '',
-        publish_year: '',
-        description: '',
-        image: ''
-      });
+    }
+  }, {
+    key: "validateForm",
+    value: function validateForm(event) {// console.log(1111);
+      // var form = document.querySelector('#form_add')
+      //
+      // if (!form.checkValidity()) {
+      //     event.preventDefault()
+      //     // event.stopPropagation()
+      // }
+      //
+      // form.classList.add('was-validated')
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__.default, {
-        onSubmit: this.onSubmit,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "form-group row",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "code",
-            className: "col-md-1 col-form-label font-weight-bold",
-            children: "\u30B3\u30FC\u30C9"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "col-md-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              id: "code",
-              name: "code",
-              placeholder: "\u30B3\u30FC\u30C9",
-              value: this.state.code,
-              onChange: this.onChangeBookCode
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "name",
-            className: "col-sm-1 col-form-label font-weight-bold",
-            children: "\u540D\u79F0"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "col-md-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              id: "name",
-              name: "name",
-              placeholder: "\u540D\u79F0",
-              value: this.state.name,
-              onChange: this.onChangeBookName
-            })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "form-group row",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "author",
-            className: "col-sm-1 col-form-label font-weight-bold",
-            children: "\u7B46\u8005"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "col-md-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              id: "author",
-              name: "author",
-              placeholder: "\u7B46\u8005",
-              value: this.state.author,
-              onChange: this.onChangeBookAuthor
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "amount",
-            className: "col-md-1 col-form-label font-weight-bold",
-            children: "\u4FA1\u683C"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "col-md-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "number",
-              className: "form-control",
-              id: "amount",
-              name: "amount",
-              placeholder: "\u4FA1\u683C",
-              value: this.state.amount,
-              onChange: this.onChangeBookAmount
-            })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "form-group row",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "publisher",
-            className: "col-md-1 col-form-label font-weight-bold",
-            children: "\u51FA\u7248\u793E"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "col-md-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              id: "publisher",
-              name: "publisher",
-              placeholder: "\u51FA\u7248\u793E",
-              value: this.state.publisher,
-              onChange: this.onChangeBookPublisher
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "publish_year",
-            className: "col-sm-1 col-form-label font-weight-bold",
-            children: "\u51FA\u7248\u5E74"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "col-md-5",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              id: "publish_year",
-              name: "publish_year",
-              placeholder: "\u51FA\u7248\u5E74",
-              value: this.state.publish_year,
-              onChange: this.onChangeBookPublishYear
-            })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "form-group row",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "description",
-            className: "col-md-1 col-form-label font-weight-bold",
-            children: "\u8AAC\u660E"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "col-md-11",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
-              rows: 5,
-              className: "form-control",
-              id: "description",
-              name: "description",
-              placeholder: "\u8AAC\u660E",
-              defaultValue: this.state.description,
-              onChange: this.onChangeBookDescription
-            })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "form-group row",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-            htmlFor: "image",
-            className: "col-md-1 col-form-label font-weight-bold",
-            children: "\u753B\u50CF"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "col-md-11",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "file",
-              id: "image",
-              name: "image",
-              className: "form-control",
-              onChange: this.onChangeBookImage
-            })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "form-group text-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "center",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-              type: "submit",
-              className: "font-weight-bold btn btn-primary m-3 col-md-2",
-              children: "\u767B\u9332"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-              type: "reset",
-              className: "font-weight-bold btn btn-primary m-3 col-md-2",
-              children: "\u30AF\u30EA\u30A2"
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("nav", {
+          className: "navbar navbar-light bg-success justify-content-between row",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+            className: "navbar-brand font-weight-bold text-white",
+            children: "\u65B0\u898F\u4F5C\u6210"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            to: "/books",
+            className: "font-weight-bold btn btn-danger text-white",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+              className: "fa fa-reply"
+            }), "\xA0", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              children: "\u623B\u308B"
             })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "row justify-content-center mt-2",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "col-md-12",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__.default, {
+              id: "form_add",
+              noValidate: true,
+              onSubmit: this.onSubmit,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "form-group row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  htmlFor: "code",
+                  className: "col-md-1 col-form-label font-weight-bold",
+                  children: "\u30B3\u30FC\u30C9"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "col-md-5 pl-0 pr-0",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "text",
+                    required: true,
+                    pattern: "[a-zA-Z0-9]+",
+                    className: "form-control text-uppercase",
+                    maxlength: "10",
+                    id: "code",
+                    name: "code",
+                    placeholder: "\u30B3\u30FC\u30C9",
+                    value: this.state.code,
+                    onChange: this.onChangeBookCode
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  htmlFor: "name",
+                  className: "col-sm-1 col-form-label font-weight-bold",
+                  children: "\u540D\u79F0"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "col-md-5 pl-0 pr-0",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "text",
+                    required: true,
+                    className: "form-control",
+                    id: "name",
+                    name: "name",
+                    placeholder: "\u540D\u79F0",
+                    value: this.state.name,
+                    onChange: this.onChangeBookName
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "form-group row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  htmlFor: "author",
+                  className: "col-sm-1 col-form-label font-weight-bold",
+                  children: "\u7B46\u8005"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "col-md-5 pl-0 pr-0",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "text",
+                    className: "form-control",
+                    id: "author",
+                    name: "author",
+                    placeholder: "\u7B46\u8005",
+                    value: this.state.author,
+                    onChange: this.onChangeBookAuthor
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  htmlFor: "amount",
+                  className: "col-md-1 col-form-label font-weight-bold",
+                  children: "\u4FA1\u683C"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "col-md-5 pl-0 pr-0",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "text",
+                    required: true,
+                    pattern: "[0-9]+",
+                    className: "form-control",
+                    maxlength: "11",
+                    id: "amount",
+                    name: "amount",
+                    placeholder: "\u4FA1\u683C",
+                    value: this.state.amount,
+                    onChange: this.onChangeBookAmount
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "form-group row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  htmlFor: "publisher",
+                  className: "col-md-1 col-form-label font-weight-bold",
+                  children: "\u51FA\u7248\u793E"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "col-md-5 pl-0 pr-0",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "text",
+                    className: "form-control",
+                    id: "publisher",
+                    name: "publisher",
+                    placeholder: "\u51FA\u7248\u793E",
+                    value: this.state.publisher,
+                    onChange: this.onChangeBookPublisher
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  htmlFor: "publish_year",
+                  className: "col-sm-1 col-form-label font-weight-bold",
+                  children: "\u51FA\u7248\u5E74"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "col-md-5 pl-0 pr-0",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "text",
+                    pattern: "[0-9]*",
+                    className: "form-control",
+                    maxlength: "4",
+                    id: "publish_year",
+                    name: "publish_year",
+                    placeholder: "\u51FA\u7248\u5E74",
+                    value: this.state.publish_year,
+                    onChange: this.onChangeBookPublishYear
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "form-group row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  htmlFor: "description",
+                  className: "col-md-1 col-form-label font-weight-bold",
+                  children: "\u8AAC\u660E"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "col-md-11 pl-0 pr-0",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
+                    rows: 5,
+                    className: "form-control",
+                    id: "description",
+                    name: "description",
+                    placeholder: "\u8AAC\u660E",
+                    value: this.state.description,
+                    onChange: this.onChangeBookDescription
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "form-group row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  htmlFor: "image",
+                  className: "col-md-1 col-form-label font-weight-bold",
+                  children: "\u753B\u50CF"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "custom-file col-md-11",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    type: "file",
+                    id: "image",
+                    name: "image",
+                    className: "custom-file-input",
+                    onChange: this.onChangeBookImage
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    className: "custom-file-label",
+                    htmlFor: "image",
+                    children: "Choose file..."
+                  })]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "form-group text-center",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  className: "center",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                    type: "submit",
+                    className: "font-weight-bold btn btn-primary m-3 col-md-2",
+                    children: "\u767B\u9332"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                    type: "reset",
+                    className: "font-weight-bold btn btn-primary m-3 col-md-2",
+                    children: "\u30AF\u30EA\u30A2"
+                  })]
+                })
+              })]
+            })
           })
         })]
       });
