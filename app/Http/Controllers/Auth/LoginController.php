@@ -41,7 +41,9 @@ class LoginController extends Controller
 
     public function loginsso(Request $request)
     {
-
-        var_dump($request->url());die();
+        $code = $request->get('code');
+//        $curl = "curl --request POST --url 'https://training.auth.ap-northeast-1.amazoncognito.com/oauth2/token' --header 'content-type: application/x-www-form-urlencoded' --data grant_type=authorization_code --data client_id=73jp3ve5nho4spjad74tululql --data code={$code} --data redirect_uri='http://localhost/loginsso'";
+//        $response = exec($curl);
+        var_dump($code);die();
     }
 }

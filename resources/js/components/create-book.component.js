@@ -3,8 +3,6 @@ import Form from 'react-bootstrap/Form'
 import axios from 'axios'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Swal from 'sweetalert2';
-import BookTableRow from "./BookTableRow";
-
 
 export default class CreateBook extends Component {
     constructor(props) {
@@ -91,7 +89,7 @@ export default class CreateBook extends Component {
                     image: ''
                 });
                 Swal.fire({
-                    title: '登録しました。',
+                    title: res.data.message,
                     icon: 'success',
                 }).then((result) => {
                     this.props.history.push('/books');

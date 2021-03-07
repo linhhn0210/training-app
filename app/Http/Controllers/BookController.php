@@ -142,7 +142,7 @@ class BookController extends Controller
     {
         $book->delete();
         return response()->json([
-            'message' => 'book deleted'
+            'message' => '削除しました。'
         ]);
     }
 }

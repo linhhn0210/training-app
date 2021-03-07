@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import BookTableRow from './BookTableRow';
+import Swal from "sweetalert2";
 
 
 export default class BookList extends Component {
@@ -19,10 +19,11 @@ export default class BookList extends Component {
         this.handleLinkPage = this.handleLinkPage.bind(this);
         this.handleSelectNumber = this.handleSelectNumber.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.deleteBook = this.deleteBook.bind(this);
     }
 
     handleSearch(event) {
-        const stateTemp = this.state;
+        var stateTemp = this.state;
         const conditions = {
             code: document.getElementById("code").value,
             name: document.getElementById("name").value,
@@ -36,7 +37,7 @@ export default class BookList extends Component {
     }
 
     handleChoosePage(event) {
-        const stateTemp = this.state;
+        var stateTemp = this.state;
         const lastPage = stateTemp.paginator.last_page;
         const choosePage = Number(event.target.value);
 
@@ -49,7 +50,7 @@ export default class BookList extends Component {
     }
 
     handleLinkPage(event) {
-        const stateTemp = this.state;
+        var stateTemp = this.state;
         const page = Number(event.target.getAttribute("data-page"));
         stateTemp.currentPage = page;
         this.setState(stateTemp);
@@ -57,7 +58,7 @@ export default class BookList extends Component {
     }
 
     handleSelectNumber(event) {
-        const stateTemp = this.state;
+        var stateTemp = this.state;
         stateTemp.numberPerPage = Number(event.target.value);
         stateTemp.currentPage = 1;
         this.setState(stateTemp);
@@ -77,7 +78,7 @@ export default class BookList extends Component {
             params: params
         })
             .then(res => {
-                const stateTemp = this.state;
+                var stateTemp = this.state;
                 stateTemp.books = res.data.data;
                 stateTemp.paginator = res.data
                 this.setState(stateTemp);
@@ -87,9 +88,56 @@ export default class BookList extends Component {
             })
     }
 
+    deleteBook(id) {
+        Swal.fire({
+            title: '削除しますか。',
+            icon: 'question',
+            iconColor: '#bd2130',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'OK',
+            cancelButtonText: 'キャンセル'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete('http://localhost/api/books/' + id)
+                    .then(res => {
+                        Swal.fire({
+                            title: res.data.message,
+                            icon: 'success',
+                        }).then((result) => {
+                            if (this.state.paginator.data.length == 1) {
+                                var stateTemp = this.state;
+                                stateTemp.currentPage = this.state.currentPage - 1;
+                                this.setState(stateTemp);
+                            }
+                            this.getListBook();
+                        });
+                    }).catch((error) => {
+                    console.log(error)
+                })
+            }
+        })
+    }
+
     DataTable() {
         return this.state.books.map((book, index) => {
-            return <BookTableRow obj={book} key={index} />;
+            return (
+                <tr>
+                <td>{book.code}</td>
+                <td>{book.name}</td>
+                <td>{book.author}</td>
+                <td>{book.publisher}</td>
+                <td className="text-center">
+                <Link to={"/edit-book/" + book.id} className="font-weight-bold btn btn-warning text-white ml-1 mr-1">
+                <i className="fa fa-edit"></i>
+                </Link>
+                <button className="font-weight-bold btn btn-danger ml-1 mr-1" onClick={() => this.deleteBook(book.id)}>
+                <i className="fa fa-trash"></i>
+                </button>
+                </td>
+                </tr>
+            );
         });
     }
 
