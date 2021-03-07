@@ -21,6 +21,7 @@ export default class CreateBook extends Component {
 
         // Setting up state
         this.state = {
+            id: '',
             code: '',
             name: '',
             author: '',
@@ -28,7 +29,9 @@ export default class CreateBook extends Component {
             publisher: '',
             publish_year: '',
             description: '',
-            image: ''
+            image: '',
+
+            loaded: false
         }
     }
 
@@ -65,6 +68,15 @@ export default class CreateBook extends Component {
     }
 
     onSubmit(e) {
+        const id = this.state.id;
+        if (id == undefined || id == "") {
+            this.storeBook(e);
+        } else {
+            this.updateBook(e)
+        }
+    }
+
+    storeBook(e) {
         e.preventDefault()
         const bookObject = {
             code: this.state.code,
@@ -78,25 +90,64 @@ export default class CreateBook extends Component {
         };
         axios.post('http://localhost/api/books', bookObject)
             .then(res => {
-                this.setState({
-                    code: '',
-                    name: '',
-                    author: '',
-                    amount: '',
-                    publisher: '',
-                    publish_year: '',
-                    description: '',
-                    image: ''
-                });
                 Swal.fire({
                     title: res.data.message,
                     icon: 'success',
                 }).then((result) => {
+                    this.setState({
+                        id: '',
+                        code: '',
+                        name: '',
+                        author: '',
+                        amount: '',
+                        publisher: '',
+                        publish_year: '',
+                        description: '',
+                        image: ''
+                    });
                     this.props.history.push('/books');
                 });
             }).catch(error => {
                 this.validateForm(error.response.data.errors);
             });
+    }
+
+    updateBook(e) {
+        e.preventDefault();
+        const id = this.state.id;
+        const bookObject = {
+            id: id,
+            code: this.state.code,
+            name: this.state.name,
+            author: this.state.author,
+            amount: this.state.amount,
+            publisher: this.state.publisher,
+            publish_year: this.state.publish_year,
+            description: this.state.description,
+            // image: this.state.image
+        };
+        axios.put('http://localhost/api/books/'+id, bookObject)
+            .then(res => {
+                Swal.fire({
+                    title: res.data.message,
+                    icon: 'success',
+                }).then((result) => {
+                    this.setState({
+                        id: '',
+                        code: '',
+                        name: '',
+                        author: '',
+                        amount: '',
+                        publisher: '',
+                        publish_year: '',
+                        description: '',
+                        image: ''
+                    });
+                    this.props.history.push('/books');
+                });
+            }).catch(error => {
+            this.validateForm(error.response.data.errors);
+        });
     }
 
     validateForm(errors) {
@@ -118,9 +169,48 @@ export default class CreateBook extends Component {
         }
     }
 
+    componentWillMount() {
+        const id = this.props.match.params.id;
+        if (id == undefined || id == "") {
+            this.setState({
+                loaded: true
+            });
+            return false;
+        }
+        axios.get('http://localhost/api/books/' + id, {params: {id: id}})
+            .then(res => {
+                this.setState({
+                    id: res.data.id,
+                    code: res.data.code,
+                    name: res.data.name,
+                    author: res.data.author,
+                    amount: res.data.amount,
+                    publisher: res.data.publisher,
+                    publish_year: res.data.publish_year,
+                    description: res.data.description,
+                    loaded: true
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
     render() {
-        return (<div><nav className="navbar navbar-light bg-success justify-content-between row">
-            <a className="navbar-brand font-weight-bold text-white">新規作成</a>
+        if (!this.state.loaded) {
+            return (<div />);
+        }
+
+        const id = this.state.id;
+        var title = '新規作成';
+        var titleClass = 'bg-success';
+        if (id != undefined && id != "") {
+            title = '編集';
+            titleClass = 'bg-warning';
+        }
+
+        return (<div><nav className={"navbar navbar-light justify-content-between row " + titleClass}>
+            <a className="navbar-brand font-weight-bold text-white">{title}</a>
             <Link to={"/books"} className="font-weight-bold btn btn-danger text-white"><i className="fa fa-reply" />&nbsp;<span>戻る</span></Link>
         </nav>
         <div className="row justify-content-center mt-2">

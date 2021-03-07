@@ -9,6 +9,7 @@ export default class BookList extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            loaded: false,
             books: [],
             paginator: [],
             currentPage: 1,
@@ -80,7 +81,8 @@ export default class BookList extends Component {
             .then(res => {
                 var stateTemp = this.state;
                 stateTemp.books = res.data.data;
-                stateTemp.paginator = res.data
+                stateTemp.paginator = res.data;
+                stateTemp.loaded = true;
                 this.setState(stateTemp);
             })
             .catch((error) => {
@@ -129,7 +131,7 @@ export default class BookList extends Component {
                 <td>{book.author}</td>
                 <td>{book.publisher}</td>
                 <td className="text-center">
-                <Link to={"/edit-book/" + book.id} className="font-weight-bold btn btn-warning text-white ml-1 mr-1">
+                <Link to={"/books/edit/" + book.id} className="font-weight-bold btn btn-warning text-white ml-1 mr-1">
                 <i className="fa fa-edit"></i>
                 </Link>
                 <button className="font-weight-bold btn btn-danger ml-1 mr-1" onClick={() => this.deleteBook(book.id)}>
@@ -224,17 +226,21 @@ export default class BookList extends Component {
     }
 
     render() {
+        if (!this.state.loaded) {
+            return (<div />);
+        }
+
         return (<div>
             <Link to={"/books/create"} className="font-weight-bold btn btn-success btn-lg mb-5">
             <i className="fa fa-plus-circle" />&nbsp;<span>作成</span>
         </Link>
         <div className="row justify-content-center">
             <div className="col-md-12">
-            <form id="form_search" enctype="multipart/form-data">
+            <form id="form_search" encType="multipart/form-data">
             <div className="form-group row">
             <label htmlFor="code" className="col-md-1 col-form-label font-weight-bold">コード</label>
             <div className="col-md-5">
-            <input type="text" className="form-control text-uppercase" maxlength="10" id="code" placeholder="コード" />
+            <input type="text" className="form-control text-uppercase" maxLength="10" id="code" placeholder="コード" />
             </div>
             <label htmlFor="name" className="col-sm-1 col-form-label font-weight-bold">名称</label>
             <div className="col-md-5">

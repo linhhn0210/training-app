@@ -29,6 +29,7 @@ Route::get('/books', function () {
     return view('book.index');
 });
 Route::get('/books/create', [App\Http\Controllers\BookController::class, 'create'])->name('book.create');
+Route::get('/books/edit/{book}', [App\Http\Controllers\BookController::class, 'edit'])->name('book.edit');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

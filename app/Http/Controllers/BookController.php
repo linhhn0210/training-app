@@ -42,9 +42,9 @@ class BookController extends Controller
         }
 
         if (!empty($where)) {
-            $books = Book::where($where)->paginate($numberPerPage,['*'], 'page', $page);
+            $books = Book::where($where)->orderBy('updated_at', 'desc')->paginate($numberPerPage,['*'], 'page', $page);
         } else {
-            $books = Book::paginate($numberPerPage,['*'], 'page', $page);
+            $books = Book::orderBy('updated_at', 'desc')->paginate($numberPerPage,['*'], 'page', $page);
         }
 
         return response()->json($books);
@@ -68,8 +68,17 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $request = $this->validateData($request);
+        $book = Book::create($request->all());
+        return response()->json(['message'=> '登録しました。',
+            'book' => $book]);
+    }
+
+    private function validateData($request)
+    {
+        $id = $request->get('id');
         $request->validate([
-            'code' => ['required', 'unique:books,code', 'alpha_num'],
+            'code' => ['required', 'unique:books,code,'.$id, 'alpha_num'],
             'name' => ['required'],
             'amount' => ['required', 'numeric'],
             'publish_year' => ['nullable','numeric']
@@ -82,9 +91,8 @@ class BookController extends Controller
             'amount.numeric' => '価格に数字を入力してください。',
             'publish_year.numeric' => '出版年に数字を入力してください。'
         ]);
-        $book = Book::create($request->all());
-        return response()->json(['message'=> '登録しました。',
-            'book' => $book]);
+
+        return $request;
     }
 
     /**
@@ -93,9 +101,11 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show(Request $request)
     {
-        return $book;
+        $id = $request->get('id');
+        $books = Book::where('id', $id)->first();
+        return response()->json($books);
     }
 
     /**
@@ -106,7 +116,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('book.edit');
     }
 
     /**
@@ -118,18 +128,10 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        $request->validate([
-            'code' => 'required',
-            'name' => 'required',
-            'amount' => 'required'
-        ]);
-        $book = $request->all();
-        $book->save();
-
-        return response()->json([
-            'message' => 'book updated!',
-            'book' => $book
-        ]);
+        $request = $this->validateData($request);
+        $book = Book::where('id', '=', $request->get('id'))->update($request->all());
+        return response()->json(['message'=> '登録しました。',
+            'book' => $book]);
     }
 
     /**
