@@ -2185,16 +2185,21 @@ var BookList = /*#__PURE__*/function (_Component) {
     value: function DataTable() {
       var _this4 = this;
 
+      var formatter = new Intl.NumberFormat();
       return this.state.books.map(function (book, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+            className: "align-middle",
             children: book.code
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+            className: "align-middle",
             children: book.name
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+            className: "align-middle",
             children: book.author
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-            children: book.publisher
+            className: "align-middle text-right",
+            children: formatter.format(book.amount)
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
             className: "text-center",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
@@ -2222,6 +2227,7 @@ var BookList = /*#__PURE__*/function (_Component) {
       var paginator = this.state.paginator; // Logic for displaying page numbers
 
       var lastPage = paginator.last_page ? paginator.last_page : 1;
+      var numberPerPage = paginator.per_page;
       var currentPage = paginator.current_page ? paginator.current_page : 1;
       var previousPage = Number(currentPage) - 1;
       var nextPage = Number(currentPage) + 1;
@@ -2312,21 +2318,30 @@ var BookList = /*#__PURE__*/function (_Component) {
       }
 
       var componentPaging = [infoComponent, firstComponent, previousComponent, inputPageComponent, nextComponent, lastComponent];
+      var perPageOption = [15, 30, 50];
+      var perPageComponent = perPageOption.map(function (number) {
+        if (numberPerPage == number) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+            selected: true,
+            value: number,
+            children: number
+          });
+        } else {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+            value: number,
+            children: number
+          });
+        }
+      });
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "container",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("nav", {
           "aria-label": true,
           className: "row",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
             className: "form-control col-md-1",
             onChange: this.handleSelectNumber,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-              children: "15"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-              children: "30"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-              children: "50"
-            })]
+            children: perPageComponent
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
             className: "pagination justify-content-end col-md-11 p-0 form-inline",
             children: componentPaging
@@ -2349,15 +2364,15 @@ var BookList = /*#__PURE__*/function (_Component) {
                 }
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("col", {
                 style: {
-                  width: '30%'
-                }
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("col", {
-                style: {
-                  width: '20%'
+                  width: '35%'
                 }
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("col", {
                 style: {
                   width: '23%'
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("col", {
+                style: {
+                  width: '15%'
                 }
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("col", {
                 style: {
@@ -2375,7 +2390,7 @@ var BookList = /*#__PURE__*/function (_Component) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                   children: "\u7B46\u8005"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
-                  children: "\u51FA\u7248\u793E"
+                  children: "\u4FA1\u683C"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                   children: "\u64CD\u4F5C"
                 })]
@@ -2384,7 +2399,7 @@ var BookList = /*#__PURE__*/function (_Component) {
               children: this.DataTable()
             })]
           })
-        })]
+        }), this.DataPaging()]
       });
     }
   }, {
@@ -2564,7 +2579,8 @@ var CreateBook = /*#__PURE__*/function (_Component) {
     _this.onChangeBookPublishYear = _this.onChangeBookPublishYear.bind(_assertThisInitialized(_this));
     _this.onChangeBookDescription = _this.onChangeBookDescription.bind(_assertThisInitialized(_this));
     _this.onChangeBookImage = _this.onChangeBookImage.bind(_assertThisInitialized(_this));
-    _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this)); // Setting up state
+    _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this));
+    _this.onReset = _this.onReset.bind(_assertThisInitialized(_this)); // Setting up state
 
     _this.state = {
       id: '',
@@ -2576,7 +2592,8 @@ var CreateBook = /*#__PURE__*/function (_Component) {
       publish_year: '',
       description: '',
       image: '',
-      loaded: false
+      loaded: false,
+      defaultValue: {}
     };
     return _this;
   }
@@ -2649,6 +2666,23 @@ var CreateBook = /*#__PURE__*/function (_Component) {
       }
     }
   }, {
+    key: "onReset",
+    value: function onReset(e) {
+      var _this$state$defaultVa, _this$state$defaultVa2, _this$state$defaultVa3, _this$state$defaultVa4, _this$state$defaultVa5, _this$state$defaultVa6, _this$state$defaultVa7, _this$state$defaultVa8, _this$state$defaultVa9;
+
+      this.setState({
+        id: (_this$state$defaultVa = this.state.defaultValue.id) !== null && _this$state$defaultVa !== void 0 ? _this$state$defaultVa : '',
+        code: (_this$state$defaultVa2 = this.state.defaultValue.code) !== null && _this$state$defaultVa2 !== void 0 ? _this$state$defaultVa2 : '',
+        name: (_this$state$defaultVa3 = this.state.defaultValue.name) !== null && _this$state$defaultVa3 !== void 0 ? _this$state$defaultVa3 : '',
+        author: (_this$state$defaultVa4 = this.state.defaultValue.author) !== null && _this$state$defaultVa4 !== void 0 ? _this$state$defaultVa4 : '',
+        amount: (_this$state$defaultVa5 = this.state.defaultValue.amount) !== null && _this$state$defaultVa5 !== void 0 ? _this$state$defaultVa5 : '',
+        publisher: (_this$state$defaultVa6 = this.state.defaultValue.publisher) !== null && _this$state$defaultVa6 !== void 0 ? _this$state$defaultVa6 : '',
+        publish_year: (_this$state$defaultVa7 = this.state.defaultValue.publish_year) !== null && _this$state$defaultVa7 !== void 0 ? _this$state$defaultVa7 : '',
+        description: (_this$state$defaultVa8 = this.state.defaultValue.description) !== null && _this$state$defaultVa8 !== void 0 ? _this$state$defaultVa8 : '',
+        image: (_this$state$defaultVa9 = this.state.defaultValue.image) !== null && _this$state$defaultVa9 !== void 0 ? _this$state$defaultVa9 : ''
+      });
+    }
+  }, {
     key: "storeBook",
     value: function storeBook(e) {
       var _this2 = this;
@@ -2669,18 +2703,6 @@ var CreateBook = /*#__PURE__*/function (_Component) {
           title: res.data.message,
           icon: 'success'
         }).then(function (result) {
-          _this2.setState({
-            id: '',
-            code: '',
-            name: '',
-            author: '',
-            amount: '',
-            publisher: '',
-            publish_year: '',
-            description: '',
-            image: ''
-          });
-
           _this2.props.history.push('/books');
         });
       })["catch"](function (error) {
@@ -2710,18 +2732,6 @@ var CreateBook = /*#__PURE__*/function (_Component) {
           title: res.data.message,
           icon: 'success'
         }).then(function (result) {
-          _this3.setState({
-            id: '',
-            code: '',
-            name: '',
-            author: '',
-            amount: '',
-            publisher: '',
-            publish_year: '',
-            description: '',
-            image: ''
-          });
-
           _this3.props.history.push('/books');
         });
       })["catch"](function (error) {
@@ -2771,7 +2781,7 @@ var CreateBook = /*#__PURE__*/function (_Component) {
           id: id
         }
       }).then(function (res) {
-        _this4.setState({
+        _this4.state.defaultValue = {
           id: res.data.id,
           code: res.data.code,
           name: res.data.name,
@@ -2779,7 +2789,12 @@ var CreateBook = /*#__PURE__*/function (_Component) {
           amount: res.data.amount,
           publisher: res.data.publisher,
           publish_year: res.data.publish_year,
-          description: res.data.description,
+          description: res.data.description
+        };
+
+        _this4.setState(_this4.state.defaultValue);
+
+        _this4.setState({
           loaded: true
         });
       })["catch"](function (error) {
@@ -2825,6 +2840,7 @@ var CreateBook = /*#__PURE__*/function (_Component) {
               id: "form_add",
               noValidate: true,
               onSubmit: this.onSubmit,
+              onReset: this.onReset,
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 className: "form-group row",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {

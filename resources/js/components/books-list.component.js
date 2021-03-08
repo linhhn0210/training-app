@@ -123,13 +123,14 @@ export default class BookList extends Component {
     }
 
     DataTable() {
+        var formatter = new Intl.NumberFormat();
         return this.state.books.map((book, index) => {
             return (
                 <tr>
-                <td>{book.code}</td>
-                <td>{book.name}</td>
-                <td>{book.author}</td>
-                <td>{book.publisher}</td>
+                <td className="align-middle">{book.code}</td>
+                <td className="align-middle">{book.name}</td>
+                <td className="align-middle">{book.author}</td>
+                <td className="align-middle text-right">{formatter.format(book.amount)}</td>
                 <td className="text-center">
                 <Link to={"/books/edit/" + book.id} className="font-weight-bold btn btn-warning text-white ml-1 mr-1">
                 <i className="fa fa-edit"></i>
@@ -147,6 +148,7 @@ export default class BookList extends Component {
         const paginator = this.state.paginator;
         // Logic for displaying page numbers
         const lastPage = paginator.last_page ? paginator.last_page : 1;
+        const numberPerPage = paginator.per_page;
         const currentPage = paginator.current_page ? paginator.current_page : 1;
         const previousPage = Number(currentPage) - 1;
         const nextPage = Number(currentPage) + 1;
@@ -184,13 +186,18 @@ export default class BookList extends Component {
 
         const componentPaging = [infoComponent, firstComponent, previousComponent, inputPageComponent, nextComponent, lastComponent];
 
+        const perPageOption = [15,30,50];
+        const perPageComponent = perPageOption.map((number) => {
+            if (numberPerPage == number) {
+                return (<option selected value={number}>{number}</option>);
+            } else {
+                return (<option value={number}>{number}</option>);
+            }
+        });
+
         return (<div className="container">
             <nav aria-label className="row">
-            <select className="form-control col-md-1" onChange={this.handleSelectNumber}>
-            <option>15</option>
-            <option>30</option>
-            <option>50</option>
-            </select>
+            <select className="form-control col-md-1" onChange={this.handleSelectNumber}>{perPageComponent}</select>
             <ul className="pagination justify-content-end col-md-11 p-0 form-inline">
             {componentPaging}
             </ul>
@@ -203,18 +210,18 @@ export default class BookList extends Component {
             <div className="table-responsive">
             <table className="table table-hover table-bordered">
             <colgroup>
-            <col style={{width: '15%'}} />
-        <col style={{width: '30%'}} />
-        <col style={{width: '20%'}} />
-        <col style={{width: '23%'}} />
-        <col style={{width: '12%'}} />
-        </colgroup>
+                <col style={{width: '15%'}} />
+                <col style={{width: '35%'}} />
+                <col style={{width: '23%'}} />
+                <col style={{width: '15%'}} />
+                <col style={{width: '12%'}} />
+            </colgroup>
         <thead className="bg-primary text-white">
             <tr className="text-center">
             <th>コード</th>
             <th>名称</th>
             <th>筆者</th>
-            <th>出版社</th>
+            <th>価格</th>
             <th>操作</th>
             </tr>
             </thead>
@@ -222,7 +229,7 @@ export default class BookList extends Component {
             {this.DataTable()}
             </tbody>
             </table>
-            </div></div>);
+            </div>{this.DataPaging()}</div>);
     }
 
     render() {

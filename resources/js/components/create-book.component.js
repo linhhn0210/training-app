@@ -18,6 +18,7 @@ export default class CreateBook extends Component {
         this.onChangeBookDescription = this.onChangeBookDescription.bind(this);
         this.onChangeBookImage = this.onChangeBookImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onReset = this.onReset.bind(this);
 
         // Setting up state
         this.state = {
@@ -31,7 +32,8 @@ export default class CreateBook extends Component {
             description: '',
             image: '',
 
-            loaded: false
+            loaded: false,
+            defaultValue: {}
         }
     }
 
@@ -76,6 +78,20 @@ export default class CreateBook extends Component {
         }
     }
 
+    onReset(e) {
+        this.setState({
+            id: this.state.defaultValue.id ?? '',
+            code: this.state.defaultValue.code ?? '',
+            name: this.state.defaultValue.name ?? '',
+            author: this.state.defaultValue.author ?? '',
+            amount: this.state.defaultValue.amount ?? '',
+            publisher: this.state.defaultValue.publisher ?? '',
+            publish_year: this.state.defaultValue.publish_year ?? '',
+            description: this.state.defaultValue.description ?? '',
+            image: this.state.defaultValue.image ?? ''
+        });
+    }
+
     storeBook(e) {
         e.preventDefault()
         const bookObject = {
@@ -94,17 +110,6 @@ export default class CreateBook extends Component {
                     title: res.data.message,
                     icon: 'success',
                 }).then((result) => {
-                    this.setState({
-                        id: '',
-                        code: '',
-                        name: '',
-                        author: '',
-                        amount: '',
-                        publisher: '',
-                        publish_year: '',
-                        description: '',
-                        image: ''
-                    });
                     this.props.history.push('/books');
                 });
             }).catch(error => {
@@ -132,17 +137,6 @@ export default class CreateBook extends Component {
                     title: res.data.message,
                     icon: 'success',
                 }).then((result) => {
-                    this.setState({
-                        id: '',
-                        code: '',
-                        name: '',
-                        author: '',
-                        amount: '',
-                        publisher: '',
-                        publish_year: '',
-                        description: '',
-                        image: ''
-                    });
                     this.props.history.push('/books');
                 });
             }).catch(error => {
@@ -179,7 +173,7 @@ export default class CreateBook extends Component {
         }
         axios.get('http://localhost/api/books/' + id, {params: {id: id}})
             .then(res => {
-                this.setState({
+                this.state.defaultValue = {
                     id: res.data.id,
                     code: res.data.code,
                     name: res.data.name,
@@ -188,8 +182,9 @@ export default class CreateBook extends Component {
                     publisher: res.data.publisher,
                     publish_year: res.data.publish_year,
                     description: res.data.description,
-                    loaded: true
-                });
+                };
+                this.setState(this.state.defaultValue);
+                this.setState({loaded: true});
             })
             .catch((error) => {
                 console.log(error);
@@ -215,7 +210,7 @@ export default class CreateBook extends Component {
         </nav>
         <div className="row justify-content-center mt-2">
             <div className="col-md-12">
-            <Form id="form_add" noValidate onSubmit={this.onSubmit}>
+            <Form id="form_add" noValidate onSubmit={this.onSubmit} onReset={this.onReset}>
             <div className="form-group row">
             <label htmlFor="code" className="col-md-1 col-form-label font-weight-bold">コード</label>
             <div className="col-md-5 pl-0 pr-0">
