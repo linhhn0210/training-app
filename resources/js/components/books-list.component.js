@@ -144,6 +144,10 @@ export default class BookList extends Component {
     }
 
     DataTable() {
+        const countData = this.state.books.length;
+        if (countData <= 0) {
+            return (<tr><td className="text-center" colspan="5">データがありません。</td></tr>);
+        }
         var formatter = new Intl.NumberFormat();
         return this.state.books.map((book, index) => {
             return (
@@ -166,6 +170,11 @@ export default class BookList extends Component {
     }
 
     DataPaging() {
+        const countData = this.state.books.length;
+        if (countData <= 0) {
+            return (<div></div>);
+        }
+
         const paginator = this.state.paginator;
         // Logic for displaying page numbers
         const lastPage = paginator.last_page ? paginator.last_page : 1;
@@ -219,9 +228,11 @@ export default class BookList extends Component {
 
         return (<div className="container">
             <div className="form-group row mb-0">
-            <label className="col-form-label col-md-1">1ページ</label>
-            <select className="form-control col-md-1" onChange={this.handleSelectNumber}>{perPageComponent}</select>
-            <label className="col-form-label col-md-1">件</label>
+            <div className="row col-md-3">
+            <label className="col-form-label mr-2">1ページ</label>
+            <select className="w-30 form-control" onChange={this.handleSelectNumber}>{perPageComponent}</select>
+            <label className="col-form-label ml-2">件</label>
+            </div>
             <ul className="pagination justify-content-end col-md-9 p-0 form-inline">
             {componentPaging}
             </ul>
@@ -230,6 +241,7 @@ export default class BookList extends Component {
     }
 
     renderListBook() {
+        const countData = this.state.books.length;
         const itemSort = [
             {field: 'code', name: 'コード'},
             {field: 'name', name: '名称'},
@@ -239,6 +251,9 @@ export default class BookList extends Component {
 
         var classSort = this.state.sortType == 'ASC' ? "fa fa-caret-square-up" : "fa fa-caret-square-down";
         const itemSortComponent = itemSort.map((item) => {
+            if (countData <= 0) {
+                return (<th>{item.name}</th>);
+            }
             if (item.field == this.state.sortField) {
                 return (<th><span className="cursor-pointer" onClick={() => this.sortBook(item.field)}>{item.name} <i className={classSort}></i></span></th>);
             } else {

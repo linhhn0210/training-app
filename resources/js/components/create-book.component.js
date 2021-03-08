@@ -263,7 +263,7 @@ export default class CreateBook extends Component {
             </div>
             </div>
             <div className="form-group text-center">
-            <div className="center">
+            <div className="center mt-5 mb-5">
             <button type="submit" className="font-weight-bold btn btn-primary m-3 col-md-2">登録</button>
             <button type="reset" className="font-weight-bold btn btn-primary m-3 col-md-2">クリア</button>
             </div>

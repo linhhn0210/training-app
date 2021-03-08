@@ -2222,6 +2222,18 @@ var BookList = /*#__PURE__*/function (_Component) {
     value: function DataTable() {
       var _this4 = this;
 
+      var countData = this.state.books.length;
+
+      if (countData <= 0) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+            className: "text-center",
+            colspan: "5",
+            children: "\u30C7\u30FC\u30BF\u304C\u3042\u308A\u307E\u305B\u3093\u3002"
+          })
+        });
+      }
+
       var formatter = new Intl.NumberFormat();
       return this.state.books.map(function (book, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
@@ -2261,6 +2273,12 @@ var BookList = /*#__PURE__*/function (_Component) {
   }, {
     key: "DataPaging",
     value: function DataPaging() {
+      var countData = this.state.books.length;
+
+      if (countData <= 0) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {});
+      }
+
       var paginator = this.state.paginator; // Logic for displaying page numbers
 
       var lastPage = paginator.last_page ? paginator.last_page : 1;
@@ -2370,16 +2388,19 @@ var BookList = /*#__PURE__*/function (_Component) {
         className: "container",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "form-group row mb-0",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-            className: "col-form-label col-md-1",
-            children: "1\u30DA\u30FC\u30B8"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
-            className: "form-control col-md-1",
-            onChange: this.handleSelectNumber,
-            children: perPageComponent
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-            className: "col-form-label col-md-1",
-            children: "\u4EF6"
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "row col-md-3",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              className: "col-form-label mr-2",
+              children: "1\u30DA\u30FC\u30B8"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
+              className: "w-30 form-control",
+              onChange: this.handleSelectNumber,
+              children: perPageComponent
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              className: "col-form-label ml-2",
+              children: "\u4EF6"
+            })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
             className: "pagination justify-content-end col-md-9 p-0 form-inline",
             children: componentPaging
@@ -2392,6 +2413,7 @@ var BookList = /*#__PURE__*/function (_Component) {
     value: function renderListBook() {
       var _this5 = this;
 
+      var countData = this.state.books.length;
       var itemSort = [{
         field: 'code',
         name: 'コード'
@@ -2407,6 +2429,12 @@ var BookList = /*#__PURE__*/function (_Component) {
       }];
       var classSort = this.state.sortType == 'ASC' ? "fa fa-caret-square-up" : "fa fa-caret-square-down";
       var itemSortComponent = itemSort.map(function (item) {
+        if (countData <= 0) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
+            children: item.name
+          });
+        }
+
         if (item.field == _this5.state.sortField) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
@@ -3088,7 +3116,7 @@ var CreateBook = /*#__PURE__*/function (_Component) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "form-group text-center",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                  className: "center",
+                  className: "center mt-5 mb-5",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
                     type: "submit",
                     className: "font-weight-bold btn btn-primary m-3 col-md-2",

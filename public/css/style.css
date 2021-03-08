@@ -8,4 +8,10 @@
     right: 5px !important;
     left: 5px !important;
 }
+.w-30 {
+     width: 30% !important;
+ }
+.w-40 {
+    width: 40% !important;
+}
 
