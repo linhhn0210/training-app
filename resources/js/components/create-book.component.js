@@ -211,52 +211,52 @@ export default class CreateBook extends Component {
         <div className="row justify-content-center mt-2">
             <div className="col-md-12">
             <Form id="form_add" noValidate onSubmit={this.onSubmit} onReset={this.onReset}>
-            <div className="form-group row">
-            <label htmlFor="code" className="col-md-1 col-form-label font-weight-bold">コード <span className="badge badge-danger">必須</span></label>
-            <div className="col-md-5 pl-0 pr-0">
+            <div className="form-row">
+            <div className="form-group col-md-6">
+            <label htmlFor="code" className="font-weight-bold">コード <span className="badge badge-danger">必須</span></label>
             <input type="text" required pattern="[a-zA-Z0-9]+" className="form-control text-uppercase" maxLength="10" id="code" name="code" placeholder="コード" value={this.state.code} onChange={this.onChangeBookCode}/>
             <div className="feedback"></div>
             </div>
-            <label htmlFor="name" className="col-sm-1 col-form-label font-weight-bold">名称 <span className="badge badge-danger">必須</span></label>
-            <div className="col-md-5 pl-0 pr-0">
+            <div className="form-group col-md-6">
+            <label htmlFor="name" className="font-weight-bold">名称 <span className="badge badge-danger">必須</span></label>
             <input type="text" required className="form-control" id="name" name="name" placeholder="名称" value={this.state.name} onChange={this.onChangeBookName}/>
             <div className="feedback"></div>
             </div>
             </div>
-            <div className="form-group row">
-            <label htmlFor="author" className="col-sm-1 col-form-label font-weight-bold">筆者</label>
-            <div className="col-md-5 pl-0 pr-0">
+            <div className="form-row">
+            <div className="form-group col-md-6">
+            <label htmlFor="author" className="font-weight-bold">筆者</label>
             <input type="text" className="form-control" id="author" name="author" placeholder="筆者" value={this.state.author} onChange={this.onChangeBookAuthor}/>
             <div className="feedback"></div>
             </div>
-            <label htmlFor="amount" className="col-md-1 col-form-label font-weight-bold">価格<span className="badge badge-danger">必須</span></label>
-            <div className="col-md-5 pl-0 pr-0">
+            <div className="form-group col-md-6">
+            <label htmlFor="amount" className="font-weight-bold">価格 <span className="badge badge-danger">必須</span></label>
             <input type="text" required pattern="[0-9]+" className="form-control" maxLength="11" id="amount" name="amount" placeholder="価格" value={this.state.amount} onChange={this.onChangeBookAmount}/>
             <div className="feedback"></div>
             </div>
             </div>
-            <div className="form-group row">
-            <label htmlFor="publisher" className="col-md-1 col-form-label font-weight-bold">出版社</label>
-            <div className="col-md-5 pl-0 pr-0">
+            <div className="form-row">
+            <div className="form-group col-md-6">
+            <label htmlFor="publisher" className="font-weight-bold">出版社</label>
             <input type="text" className="form-control" id="publisher" name="publisher" placeholder="出版社" value={this.state.publisher} onChange={this.onChangeBookPublisher}/>
             <div className="feedback"></div>
             </div>
-            <label htmlFor="publish_year" className="col-sm-1 col-form-label font-weight-bold">出版年</label>
-            <div className="col-md-5 pl-0 pr-0">
+            <div className="form-group col-md-6">
+            <label htmlFor="publish_year" className="font-weight-bold">出版年</label>
             <input type="text" pattern="[0-9]*" className="form-control" maxLength="4" id="publish_year" name="publish_year" placeholder="出版年" value={this.state.publish_year} onChange={this.onChangeBookPublishYear}/>
             <div className="feedback"></div>
             </div>
             </div>
-            <div className="form-group row mt-4 pt-3">
-            <label htmlFor="description" className="col-md-1 col-form-label font-weight-bold">説明</label>
-            <div className="col-md-11 pl-0 pr-0">
+            <div className="form-row">
+            <div className="form-group col-md-12">
+            <label htmlFor="description" className="font-weight-bold">説明</label>
             <textarea rows={5} className="form-control" id="description" name="description" placeholder="説明" value={this.state.description} onChange={this.onChangeBookDescription}/>
             <div className="feedback"></div>
-        </div>
-        </div>
-        <div className="form-group row mt-4 pt-3">
-            <label htmlFor="image" className="col-md-1 col-form-label font-weight-bold">画像</label>
-            <div className="custom-file col-md-11">
+            </div>
+            </div>
+            <div className="form-row">
+            <label htmlFor="image" className="font-weight-bold">画像</label>
+            <div className="custom-file col-md-12">
                 <input type="file" id="image" name="image" className="custom-file-input"  onChange={this.onChangeBookImage} />
         <div className="feedback"></div>
             <label className="custom-file-label text-secondary" htmlFor="image">ファイル選択...</label>

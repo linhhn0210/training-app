@@ -216,13 +216,16 @@ export default class BookList extends Component {
             }
         });
 
+
         return (<div className="container">
-            <nav aria-label className="row">
+            <div className="form-group row mb-0">
+            <label className="col-form-label col-md-1">1ページ</label>
             <select className="form-control col-md-1" onChange={this.handleSelectNumber}>{perPageComponent}</select>
-            <ul className="pagination justify-content-end col-md-11 p-0 form-inline">
+            <label className="col-form-label col-md-1">件</label>
+            <ul className="pagination justify-content-end col-md-9 p-0 form-inline">
             {componentPaging}
             </ul>
-            </nav>
+            </div>
             </div>);
     }
 

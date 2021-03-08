@@ -4,4 +4,8 @@
 .cursor-pointer {
     cursor: pointer;
 }
+#form_add .custom-file-label {
+    right: 5px !important;
+    left: 5px !important;
+}
 
