@@ -14,13 +14,17 @@ export default class BookList extends Component {
             paginator: [],
             currentPage: 1,
             numberPerPage: 15,
-            conditions: {}
+            conditions: {},
+
+            sortField: 'code',
+            sortType: 'ASC'
         };
         this.handleChoosePage = this.handleChoosePage.bind(this);
         this.handleLinkPage = this.handleLinkPage.bind(this);
         this.handleSelectNumber = this.handleSelectNumber.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.deleteBook = this.deleteBook.bind(this);
+        this.sortBook = this.sortBook.bind(this);
     }
 
     handleSearch(event) {
@@ -66,6 +70,21 @@ export default class BookList extends Component {
         this.getListBook();
     }
 
+    sortBook(field) {
+        var stateTemp = this.state;
+
+        if (stateTemp.sortField != field) {
+            stateTemp.sortType = 'ASC';
+        } else {
+            stateTemp.sortType = this.state.sortType == 'ASC' ? 'DESC' : 'ASC';
+        }
+        stateTemp.sortField = field;
+        stateTemp.currentPage = 1;
+
+        this.setState(stateTemp);
+        this.getListBook();
+    }
+
     componentWillMount() {
         this.getListBook();
     }
@@ -74,6 +93,8 @@ export default class BookList extends Component {
         const params = this.state.conditions;
         params.page = this.state.currentPage;
         params.numberPerPage = this.state.numberPerPage;
+        params.sortField = this.state.sortField;
+        params.sortType = this.state.sortType;
 
         axios.get('http://localhost/api/books', {
             params: params
@@ -161,8 +182,8 @@ export default class BookList extends Component {
             classLink = "page-item disabled";
             handleClick = "";
         }
-        const firstComponent = (<li className={classLink} onClick={handleClick}><a href="javascript:void(0)" data-page="1" className="page-link">先頭</a></li>)
-        const previousComponent = (<li className={classLink} onClick={handleClick}><a href="javascript:void(0)" data-page={previousPage} className="page-link">前へ</a></li>)
+        const firstComponent = (<li className={classLink} onClick={handleClick}><a data-page="1" className="cursor-pointer page-link">先頭</a></li>)
+        const previousComponent = (<li className={classLink} onClick={handleClick}><a data-page={previousPage} className="cursor-pointer page-link">前へ</a></li>)
 
         classLink = "page-item";
         var handleClick = this.handleLinkPage;
@@ -170,8 +191,8 @@ export default class BookList extends Component {
             classLink = "page-item disabled";
             handleClick = "";
         }
-        const lastComponent = (<li className={classLink} onClick={handleClick}><a href="javascript:void(0)" data-page={lastPage} className="page-link rounded-0">最終</a></li>)
-        const nextComponent = (<li className={classLink} onClick={handleClick}><a href="javascript:void(0)" data-page={nextPage} className="page-link">次へ</a></li>)
+        const lastComponent = (<li className={classLink} onClick={handleClick}><a data-page={lastPage} className="cursor-pointer page-link rounded-0">最終</a></li>)
+        const nextComponent = (<li className={classLink} onClick={handleClick}><a data-page={nextPage} className="cursor-pointer page-link">次へ</a></li>)
 
         const inputPageComponent = (<li className="page-item pl-1 pr-2">
             <input type="text" className="form-control text-center" size="1" onChange={this.handleChoosePage} value={currentPage}/>
@@ -206,6 +227,22 @@ export default class BookList extends Component {
     }
 
     renderListBook() {
+        const itemSort = [
+            {field: 'code', name: 'コード'},
+            {field: 'name', name: '名称'},
+            {field: 'author', name: '筆者'},
+            {field: 'amount', name: '価格'}
+        ];
+
+        var classSort = this.state.sortType == 'ASC' ? "fa fa-caret-square-up" : "fa fa-caret-square-down";
+        const itemSortComponent = itemSort.map((item) => {
+            if (item.field == this.state.sortField) {
+                return (<th><span className="cursor-pointer" onClick={() => this.sortBook(item.field)}>{item.name} <i className={classSort}></i></span></th>);
+            } else {
+                return (<th><span className="cursor-pointer" onClick={() => this.sortBook(item.field)}>{item.name} <i className="hidden"></i></span></th>);
+            }
+        });
+
         return (<div>{this.DataPaging()}
             <div className="table-responsive">
             <table className="table table-hover table-bordered">
@@ -218,10 +255,7 @@ export default class BookList extends Component {
             </colgroup>
         <thead className="bg-primary text-white">
             <tr className="text-center">
-            <th>コード</th>
-            <th>名称</th>
-            <th>筆者</th>
-            <th>価格</th>
+            {itemSortComponent}
             <th>操作</th>
             </tr>
             </thead>

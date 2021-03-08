@@ -30,6 +30,8 @@ class BookController extends Controller
      */
     public function fetch(Request $request)
     {
+        $sortField = $request->get('sortField');
+        $sortType = $request->get('sortType');
         $numberPerPage = $request->get('numberPerPage');
         $page = $request->get('page');
         $conditions = [
@@ -47,9 +49,9 @@ class BookController extends Controller
         }
 
         if (!empty($where)) {
-            $books = Book::where($where)->orderBy('updated_at', 'desc')->paginate($numberPerPage,['*'], 'page', $page);
+            $books = Book::where($where)->orderBy($sortField, $sortType)->paginate($numberPerPage,['*'], 'page', $page);
         } else {
-            $books = Book::orderBy('updated_at', 'desc')->paginate($numberPerPage,['*'], 'page', $page);
+            $books = Book::orderBy($sortField, $sortType)->paginate($numberPerPage,['*'], 'page', $page);
         }
 
         return response()->json($books);

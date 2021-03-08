@@ -212,12 +212,12 @@ export default class CreateBook extends Component {
             <div className="col-md-12">
             <Form id="form_add" noValidate onSubmit={this.onSubmit} onReset={this.onReset}>
             <div className="form-group row">
-            <label htmlFor="code" className="col-md-1 col-form-label font-weight-bold">コード</label>
+            <label htmlFor="code" className="col-md-1 col-form-label font-weight-bold">コード <span className="badge badge-danger">必須</span></label>
             <div className="col-md-5 pl-0 pr-0">
             <input type="text" required pattern="[a-zA-Z0-9]+" className="form-control text-uppercase" maxLength="10" id="code" name="code" placeholder="コード" value={this.state.code} onChange={this.onChangeBookCode}/>
             <div className="feedback"></div>
             </div>
-            <label htmlFor="name" className="col-sm-1 col-form-label font-weight-bold">名称</label>
+            <label htmlFor="name" className="col-sm-1 col-form-label font-weight-bold">名称 <span className="badge badge-danger">必須</span></label>
             <div className="col-md-5 pl-0 pr-0">
             <input type="text" required className="form-control" id="name" name="name" placeholder="名称" value={this.state.name} onChange={this.onChangeBookName}/>
             <div className="feedback"></div>
@@ -229,7 +229,7 @@ export default class CreateBook extends Component {
             <input type="text" className="form-control" id="author" name="author" placeholder="筆者" value={this.state.author} onChange={this.onChangeBookAuthor}/>
             <div className="feedback"></div>
             </div>
-            <label htmlFor="amount" className="col-md-1 col-form-label font-weight-bold">価格</label>
+            <label htmlFor="amount" className="col-md-1 col-form-label font-weight-bold">価格<span className="badge badge-danger">必須</span></label>
             <div className="col-md-5 pl-0 pr-0">
             <input type="text" required pattern="[0-9]+" className="form-control" maxLength="11" id="amount" name="amount" placeholder="価格" value={this.state.amount} onChange={this.onChangeBookAmount}/>
             <div className="feedback"></div>
@@ -247,14 +247,14 @@ export default class CreateBook extends Component {
             <div className="feedback"></div>
             </div>
             </div>
-            <div className="form-group row">
+            <div className="form-group row mt-4 pt-3">
             <label htmlFor="description" className="col-md-1 col-form-label font-weight-bold">説明</label>
             <div className="col-md-11 pl-0 pr-0">
             <textarea rows={5} className="form-control" id="description" name="description" placeholder="説明" value={this.state.description} onChange={this.onChangeBookDescription}/>
             <div className="feedback"></div>
         </div>
         </div>
-        <div className="form-group row">
+        <div className="form-group row mt-4 pt-3">
             <label htmlFor="image" className="col-md-1 col-form-label font-weight-bold">画像</label>
             <div className="custom-file col-md-11">
                 <input type="file" id="image" name="image" className="custom-file-input"  onChange={this.onChangeBookImage} />

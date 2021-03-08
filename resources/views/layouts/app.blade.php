@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -45,16 +45,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-primary" href="{{ route('logout') }}">Logout</a>
                         </li>
-                        <!-- Authentication Links -->
-{{--                        <li class="nav-item dropdown">--}}
-{{--                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-{{--                                {{ Session::get('userLogin')}}--}}
-{{--                            </a>--}}
-
-{{--                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
-{{--                                <a class="dropdown-item" href="">Logout</a>--}}
-{{--                            </div>--}}
-{{--                        </li>--}}
                     </ul>
                 </div>
             </div>
