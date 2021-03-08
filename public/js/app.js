@@ -2119,8 +2119,8 @@ var BookList = /*#__PURE__*/function (_Component) {
       this.getListBook();
     }
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "componentWillMount",
+    value: function componentWillMount() {
       this.getListBook();
     }
   }, {
@@ -2998,9 +2998,9 @@ var CreateBook = /*#__PURE__*/function (_Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                     className: "feedback"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                    className: "custom-file-label",
+                    className: "custom-file-label text-secondary",
                     htmlFor: "image",
-                    children: "Choose file..."
+                    children: "\u30D5\u30A1\u30A4\u30EB\u9078\u629E..."
                   })]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {

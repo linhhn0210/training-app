@@ -66,7 +66,7 @@ export default class BookList extends Component {
         this.getListBook();
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.getListBook();
     }
 

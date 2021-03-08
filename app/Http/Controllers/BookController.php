@@ -85,11 +85,11 @@ class BookController extends Controller
         ],[
             'code.required' => 'コードを入力してください。',
             'code.unique' => 'コードが登録されました。',
-            'code.alpha_num' => 'コードに英数字を入力してください。',
+            'code.alpha_num' => 'コードは半角英数字を使用してください。',
             'name.required' => '名称を入力してください。',
             'amount.required' => '価格を入力してください。',
-            'amount.numeric' => '価格に数字を入力してください。',
-            'publish_year.numeric' => '出版年に数字を入力してください。'
+            'amount.numeric' => '価格は半角数字を使用してください。',
+            'publish_year.numeric' => '出版年は半角数字を使用してください。'
         ]);
 
         return $request;

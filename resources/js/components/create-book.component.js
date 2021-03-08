@@ -259,7 +259,7 @@ export default class CreateBook extends Component {
             <div className="custom-file col-md-11">
                 <input type="file" id="image" name="image" className="custom-file-input"  onChange={this.onChangeBookImage} />
         <div className="feedback"></div>
-            <label className="custom-file-label" htmlFor="image">Choose file...</label>
+            <label className="custom-file-label text-secondary" htmlFor="image">ファイル選択...</label>
             </div>
             </div>
             <div className="form-group text-center">
