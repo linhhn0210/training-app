@@ -219,14 +219,14 @@ export default class CreateBook extends Component {
             </div>
             <div className="form-group col-md-6">
             <label htmlFor="name" className="font-weight-bold">名称 <span className="badge badge-danger">必須</span></label>
-            <input type="text" required className="form-control" id="name" name="name" placeholder="名称" value={this.state.name} onChange={this.onChangeBookName}/>
+            <input type="text" required className="form-control" id="name" name="name" maxLength="255" placeholder="名称" value={this.state.name} onChange={this.onChangeBookName}/>
             <div className="feedback"></div>
             </div>
             </div>
             <div className="form-row">
             <div className="form-group col-md-6">
             <label htmlFor="author" className="font-weight-bold">筆者</label>
-            <input type="text" className="form-control" id="author" name="author" placeholder="筆者" value={this.state.author} onChange={this.onChangeBookAuthor}/>
+            <input type="text" className="form-control" id="author" name="author" maxLength="255" placeholder="筆者" value={this.state.author} onChange={this.onChangeBookAuthor}/>
             <div className="feedback"></div>
             </div>
             <div className="form-group col-md-6">
@@ -238,7 +238,7 @@ export default class CreateBook extends Component {
             <div className="form-row">
             <div className="form-group col-md-6">
             <label htmlFor="publisher" className="font-weight-bold">出版社</label>
-            <input type="text" className="form-control" id="publisher" name="publisher" placeholder="出版社" value={this.state.publisher} onChange={this.onChangeBookPublisher}/>
+            <input type="text" className="form-control" id="publisher" name="publisher" maxLength="255" placeholder="出版社" value={this.state.publisher} onChange={this.onChangeBookPublisher}/>
             <div className="feedback"></div>
             </div>
             <div className="form-group col-md-6">

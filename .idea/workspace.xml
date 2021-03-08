@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f27475a1-cfa7-4f2e-bece-bd487b46c7b4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/books-list.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/books-list.component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/create-book.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/create-book.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/book/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/book/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/book/edit.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
