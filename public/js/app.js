@@ -1992,7 +1992,23 @@ function App() {
 
 if (document.getElementById('content')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(App, {}), document.getElementById('content'));
-}
+} //
+// const urlParams = new URLSearchParams(window.location.search);
+// const code = urlParams.get('code');
+// axios.post('https://training.auth.ap-northeast-1.amazoncognito.com/oauth2/token', {
+//         grant_type: 'authorization_code', client_id: '73jp3ve5nho4spjad74tululql',
+//         code: code, redirect_uri: ''
+//     }, {
+//         headers: {
+//             'content-type': 'application/x-www-form-urlencoded'
+//         }}
+// )
+//     .then((res) => {
+//         console.log(res.data)
+//     })
+//     .catch((error) => {
+//         console.error(error)
+//     })
 
 /***/ }),
 

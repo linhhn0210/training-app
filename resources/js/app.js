@@ -27,4 +27,20 @@ export default App;
 if (document.getElementById('content')) {
     ReactDOM.render(<App />, document.getElementById('content'));
 }
-
+//
+// const urlParams = new URLSearchParams(window.location.search);
+// const code = urlParams.get('code');
+// axios.post('https://training.auth.ap-northeast-1.amazoncognito.com/oauth2/token', {
+//         grant_type: 'authorization_code', client_id: '73jp3ve5nho4spjad74tululql',
+//         code: code, redirect_uri: ''
+//     }, {
+//         headers: {
+//             'content-type': 'application/x-www-form-urlencoded'
+//         }}
+// )
+//     .then((res) => {
+//         console.log(res.data)
+//     })
+//     .catch((error) => {
+//         console.error(error)
+//     })

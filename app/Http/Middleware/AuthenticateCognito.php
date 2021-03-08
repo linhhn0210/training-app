@@ -18,22 +18,6 @@ class AuthenticateCognito
      */
     public function handle($request, Closure $next)
     {
-//        $client = new CognitoIdentityProviderClient([
-//            'version' => config('cognito.version'),
-//            'region' => config('cognito.region'),
-//            'credentials' => config('cognito.credentials'),
-//        ]);
-//
-//        $result = null;
-//        if (isset($_GET["code"]) && $_GET["code"] !== '') {
-//            $result = $client->getUser([
-//                'AccessToken' => $_GET["access_token"] ?? '',
-//            ]);
-//        }
-//        if ($result == null || empty($result)) {
-//            return Redirect::to(config('app.APP_URL'));
-//        }
-
         return $next($request);
     }
 }

@@ -15,7 +15,12 @@ class BookController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+        parent::__construct();
+    }
+
+    public function index()
+    {
+        return view('book.index');
     }
 
     /**
@@ -23,7 +28,7 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function fetch(Request $request)
     {
         $numberPerPage = $request->get('numberPerPage');
         $page = $request->get('page');

@@ -1,3 +1,6 @@
 .custom-file-input ~ .custom-file-label::after {
     content: "参照" !important;
 }
+input:required {
+    border-color: #ffe70a;
+}

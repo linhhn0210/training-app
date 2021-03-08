@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f27475a1-cfa7-4f2e-bece-bd487b46c7b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AuthenticateCognito.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AuthenticateCognito.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/books-list.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/books-list.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/create-book.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/create-book.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,17 +221,27 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="794" y="448" key="NewPhpFileDialog" timestamp="1614840664899">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="2610" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1615191068209">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
+    <state x="2610" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615191068209" />
+    <state x="2714" y="448" key="NewPhpFileDialog" timestamp="1615175331137">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2714" y="448" key="NewPhpFileDialog/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615175331137" />
     <state x="794" y="448" key="NewPhpFileDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1614840664899" />
     <state x="798" y="235" key="RollbackChangesDialog" timestamp="1614751431071">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="798" y="235" key="RollbackChangesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1614751431071" />
-    <state x="656" y="262" width="607" height="526" key="find.popup" timestamp="1615050934765">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="2012" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1615180193343">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
+    <state x="2012" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615180193343" />
+    <state x="2577" y="256" width="607" height="526" key="find.popup" timestamp="1615190945425">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2577" y="256" width="607" height="526" key="find.popup/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615190945425" />
     <state x="656" y="262" width="607" height="526" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1615050934765" />
   </component>
   <component name="XDebuggerManager">
