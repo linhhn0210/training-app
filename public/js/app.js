@@ -2148,8 +2148,8 @@ var BookList = /*#__PURE__*/function (_Component) {
         stateTemp.sortType = this.state.sortType == 'ASC' ? 'DESC' : 'ASC';
       }
 
-      stateTemp.sortField = field;
-      stateTemp.currentPage = 1;
+      stateTemp.sortField = field; // stateTemp.currentPage = 1;
+
       this.setState(stateTemp);
       this.getListBook();
     }
@@ -2623,10 +2623,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ CreateBook)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Form */ "./node_modules/react-bootstrap/esm/Form.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -2919,25 +2918,17 @@ var CreateBook = /*#__PURE__*/function (_Component) {
       }
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("nav", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
           className: "navbar navbar-light justify-content-between row " + titleClass,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
             className: "navbar-brand font-weight-bold text-white",
             children: title
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-            to: "/books",
-            className: "font-weight-bold btn btn-danger text-white",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
-              className: "fa fa-reply"
-            }), "\xA0", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: "\u623B\u308B"
-            })]
-          })]
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "row justify-content-center mt-2",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
             className: "col-md-12",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_5__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_bootstrap_Form__WEBPACK_IMPORTED_MODULE_4__.default, {
               id: "form_add",
               noValidate: true,
               onSubmit: this.onSubmit,
@@ -2982,6 +2973,7 @@ var CreateBook = /*#__PURE__*/function (_Component) {
                     className: "form-control",
                     id: "name",
                     name: "name",
+                    maxLength: "255",
                     placeholder: "\u540D\u79F0",
                     value: this.state.name,
                     onChange: this.onChangeBookName
@@ -3002,6 +2994,7 @@ var CreateBook = /*#__PURE__*/function (_Component) {
                     className: "form-control",
                     id: "author",
                     name: "author",
+                    maxLength: "255",
                     placeholder: "\u7B46\u8005",
                     value: this.state.author,
                     onChange: this.onChangeBookAuthor
@@ -3045,6 +3038,7 @@ var CreateBook = /*#__PURE__*/function (_Component) {
                     className: "form-control",
                     id: "publisher",
                     name: "publisher",
+                    maxLength: "255",
                     placeholder: "\u51FA\u7248\u793E",
                     value: this.state.publisher,
                     onChange: this.onChangeBookPublisher

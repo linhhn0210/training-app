@@ -79,7 +79,7 @@ export default class BookList extends Component {
             stateTemp.sortType = this.state.sortType == 'ASC' ? 'DESC' : 'ASC';
         }
         stateTemp.sortField = field;
-        stateTemp.currentPage = 1;
+        // stateTemp.currentPage = 1;
 
         this.setState(stateTemp);
         this.getListBook();

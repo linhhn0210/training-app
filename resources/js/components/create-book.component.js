@@ -206,7 +206,6 @@ export default class CreateBook extends Component {
 
         return (<div><nav className={"navbar navbar-light justify-content-between row " + titleClass}>
             <a className="navbar-brand font-weight-bold text-white">{title}</a>
-            <Link to={"/books"} className="font-weight-bold btn btn-danger text-white"><i className="fa fa-reply" />&nbsp;<span>戻る</span></Link>
         </nav>
         <div className="row justify-content-center mt-2">
             <div className="col-md-12">
