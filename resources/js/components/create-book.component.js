@@ -253,14 +253,6 @@ export default class CreateBook extends Component {
             <div className="feedback"></div>
             </div>
             </div>
-            <div className="form-row">
-            <label htmlFor="image" className="font-weight-bold">画像</label>
-            <div className="custom-file col-md-12">
-                <input type="file" id="image" name="image" className="custom-file-input"  onChange={this.onChangeBookImage} />
-        <div className="feedback"></div>
-            <label className="custom-file-label text-secondary" htmlFor="image">ファイル選択...</label>
-            </div>
-            </div>
             <div className="form-group text-center">
             <div className="center mt-5 mb-5">
             <button type="submit" className="font-weight-bold btn btn-primary m-3 col-md-2">登録</button>

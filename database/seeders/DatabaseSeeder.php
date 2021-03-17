@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
                 'amount' => $faker->numberBetween(),
                 'author' => $faker->name,
                 'publisher' => $faker->streetName,
-                'publish_year' => $faker->date($format = 'Y', $max = '2020',$min = '1900')
+                'publish_year' => $faker->date($format = 'Y')
             ]);
         }
     }

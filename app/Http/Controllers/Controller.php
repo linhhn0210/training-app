@@ -18,8 +18,6 @@ class Controller extends BaseController
      */
     public function __construct()
     {
-        $useSSO = env('USE_SSO', false);
-        $middleware = $useSSO == true ? 'auth.cognito' : 'auth';
-        $this->middleware($middleware);
+
     }
 }

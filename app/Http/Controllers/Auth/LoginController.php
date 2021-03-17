@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Aws\CognitoIdentityProvider\CognitoIdentityProviderClient;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -40,6 +41,23 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|string',
+        ]);
+    }
+
+    protected function credentials(Request $request)
+    {
+        return array_merge($request->only($this->username()));
+    }
+
+    public function username()
+    {
+        return 'username';
+    }
+
     public function loginsso(Request $request)
     {
         $code = $request->get('code');
@@ -63,28 +81,44 @@ class LoginController extends Controller
         curl_close ($ch);
         $tokens = json_decode($response, true);
 
-        $request->session()->put('id_token', $tokens['id_token']);
-        $request->session()->put('access_token', $tokens['access_token']);
-        $request->session()->put('refresh_token', $tokens['refresh_token']);
-
-        $client = new CognitoIdentityProviderClient([
-            'version' => config('cognito.version'),
-            'region' => config('cognito.region'),
-            'credentials' => config('cognito.credentials'),
-        ]);
         $accessToken = $tokens['access_token'] ?? '';
-        $user = $client->getUser(
-            ['AccessToken' => $accessToken]
-        );
 
-        $userName = $user['Username'] ?? '';
+        $userSso = $this->getUserInfo($accessToken);
 
-        if (!$userName) {
-            return redirect()->route('login');
-        }
-        $request->session()->put('userLogin', $userName);
+        $data = [
+            'username' => $userSso['username'] ?? '',
+            'email' => $userSso['email'] ?? '',
+            'name' => $userSso['sub'] ?? '',
+            'password' => ''
+        ];
+
+        $user = User::where('username', $userSso['username'])->updateOrCreate($data);
+
+        Auth()->login($user);
 
         return redirect()->route('book.index');
+    }
+
+    public function getUserInfo($token = "")
+    {
+        if (!$token) {
+            return [];
+        }
+        $url = 'https://training.auth.'.config('cognito.region').'.amazoncognito.com/oauth2/userInfo';
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$token]);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,TRUE);
+
+        $response = curl_exec($ch);
+        curl_close ($ch);
+        return json_decode($response, true);
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/logoutsso');
     }
 
 }

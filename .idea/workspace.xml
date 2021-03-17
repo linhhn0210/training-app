@@ -3,9 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="f27475a1-cfa7-4f2e-bece-bd487b46c7b4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_02_055624_create_books_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_02_055624_create_books_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/books-list.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/books-list.component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/create-book.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/create-book.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +39,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="PhpDebugGeneral" xdebug_debug_port="9003" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
       <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
@@ -160,10 +177,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/book" />
+    <property name="last_opened_file_path" value="C:/xampp/php/php.exe" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -177,11 +196,27 @@
       <recent name="E:\Projects\training-app\config" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Script.Authenticate.php">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="training" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="Authenticate.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="PHP Built-in Web Server.training" />
+      <item itemvalue="PHP Script.Authenticate.php" />
+      <item itemvalue="PHPUnit.phpunit.xml" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.Authenticate.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -208,6 +243,10 @@
       <workItem from="1614333196199" duration="75000" />
       <workItem from="1614673558411" duration="5288000" />
       <workItem from="1614678914031" duration="12769000" />
+      <workItem from="1615266819675" duration="4375000" />
+      <workItem from="1615276691263" duration="24407000" />
+      <workItem from="1615789977277" duration="656000" />
+      <workItem from="1615962097961" duration="1780000" />
     </task>
     <servers />
   </component>
@@ -215,10 +254,62 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2610" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1615191068209">
+    <state x="2460" y="179" key="#CLI_Interpreters" timestamp="1615271197224">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
-    <state x="2610" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615191068209" />
+    <state x="2460" y="179" key="#CLI_Interpreters/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615271197224" />
+    <state x="2472" y="183" key="#Notifications" timestamp="1615279125985">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2472" y="183" key="#Notifications/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615279125985" />
+    <state x="2460" y="179" key="#Test_Frameworks" timestamp="1615278625898">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2460" y="179" key="#Test_Frameworks/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615278625898" />
+    <state x="2334" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615278658789">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2334" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615278658789" />
+    <state x="2610" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1615359719269">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2610" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615359719269" />
+    <state x="2660" y="279" key="FileChooserDialogImpl" timestamp="1615278623310">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2660" y="279" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615278623310" />
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1615789938413">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615789938413" />
+    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1615789938412">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615789938412" />
+    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1615789938412">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615789938412" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1615789938412">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615789938412" />
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1615279151088">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615279151088" />
+    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1615279151088">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615279151088" />
+    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1615279151088">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615279151088" />
+    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1615279151088">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615279151088" />
     <state x="2683" y="339" key="NewPhpClassDialog" timestamp="1615259295829">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
@@ -232,14 +323,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="798" y="235" key="RollbackChangesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1614751431071" />
-    <state x="2012" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1615180193343">
+    <state x="2381" y="167" key="SettingsEditor" timestamp="1615789851376">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
-    <state x="2012" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615180193343" />
-    <state x="2577" y="256" width="607" height="526" key="find.popup" timestamp="1615190945425">
+    <state x="2381" y="167" key="SettingsEditor/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615789851376" />
+    <state x="2012" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1615361326334">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
-    <state x="2577" y="256" width="607" height="526" key="find.popup/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615190945425" />
+    <state x="2012" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615361326334" />
+    <state x="2391" y="260" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1615278024042">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2391" y="260" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615278024042" />
+    <state x="2543" y="274" width="607" height="526" key="find.popup" timestamp="1615363289407">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2543" y="274" width="607" height="526" key="find.popup/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1615363289407" />
     <state x="656" y="262" width="607" height="526" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1615050934765" />
   </component>
   <component name="XDebuggerManager">
@@ -248,10 +347,16 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/create-book.component.js</url>
           <line>206</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="php-exception">
+          <properties name="ErrorException" />
+          <option name="timeStamp" value="8" />
+        </breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="javascript-exception" />
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>

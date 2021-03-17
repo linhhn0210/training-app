@@ -40,7 +40,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <span class="nav-link text-success" >{{ Session::get('userLogin')}} |</span>
+                            <span class="nav-link text-success" >{{Auth::user()->username}}</span>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-primary" href="{{ route('logout') }}">Logout</a>

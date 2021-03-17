@@ -2802,8 +2802,7 @@ var CreateBook = /*#__PURE__*/function (_Component) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
           title: res.data.message,
           icon: 'success'
-        }).then(function (result) {
-          _this2.props.history.push('/books');
+        }).then(function (result) {// this.props.history.push('/books');
         });
       })["catch"](function (error) {
         _this2.validateForm(error.response.data.errors);
@@ -3085,28 +3084,6 @@ var CreateBook = /*#__PURE__*/function (_Component) {
                     className: "feedback"
                   })]
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                className: "form-row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                  htmlFor: "image",
-                  className: "font-weight-bold",
-                  children: "\u753B\u50CF"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                  className: "custom-file col-md-12",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "file",
-                    id: "image",
-                    name: "image",
-                    className: "custom-file-input",
-                    onChange: this.onChangeBookImage
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                    className: "feedback"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                    className: "custom-file-label text-secondary",
-                    htmlFor: "image",
-                    children: "\u30D5\u30A1\u30A4\u30EB\u9078\u629E..."
-                  })]
-                })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "form-group text-center",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
