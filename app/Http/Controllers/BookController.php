@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -34,17 +35,24 @@ class BookController extends Controller
         $sortType = $request->get('sortType');
         $numberPerPage = $request->get('numberPerPage');
         $page = $request->get('page');
-        $conditions = [
+        $params = [
             'code' => $request->get('code'),
             'name' => $request->get('name'),
             'publisher' => $request->get('publisher'),
             'author' => $request->get('author'),
         ];
 
+        $conditions = [];
+        foreach ($params as $field => $value) {
+            $field = 'REPLACE(REPLACE(REPLACE(REPLACE('.$field.', "ﾟ", ""), "ﾞ", ""), "ｰ", ""), "ー", "")';
+            $value = str_replace(['ﾟ','ﾞ','ｰ','ー'],'',$value);
+            $conditions[$field] = $value;
+        }
+
         $where = [];
         foreach ($conditions as $field => $value) {
             if (trim((string)$value) !== "") {
-                $where[] = [$field, 'like', '%'.$value.'%'];
+                $where[] = [DB::raw($field), 'like', '%'.$value.'%'];
             }
         }
 

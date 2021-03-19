@@ -2802,7 +2802,8 @@ var CreateBook = /*#__PURE__*/function (_Component) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
           title: res.data.message,
           icon: 'success'
-        }).then(function (result) {// this.props.history.push('/books');
+        }).then(function (result) {
+          _this2.props.history.push('/books');
         });
       })["catch"](function (error) {
         _this2.validateForm(error.response.data.errors);
